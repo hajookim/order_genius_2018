@@ -1,24 +1,11 @@
-# README
+# Order Genius
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository contains a starting point for the Order Genius app we'll build in class.
 
-Things you may want to cover:
+Setup steps:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Fork (not clone) the repo.
+2. Run `rails db:create` to create the database
+3. Run `rails db:seed` to bring in seed data
+4. Run `rails server` to start the Rails server
+5. Visit `http://localhost:3000/`
