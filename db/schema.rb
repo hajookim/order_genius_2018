@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_140624) do
+ActiveRecord::Schema.define(version: 2018_05_24_143318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
@@ -24,6 +30,25 @@ ActiveRecord::Schema.define(version: 2018_05_24_140624) do
     t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
   end
 
+  create_table "order_menu_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "menu_item_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_item_id"], name: "index_order_menu_items_on_menu_item_id"
+    t.index ["order_id"], name: "index_order_menu_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name", null: false
     t.string "phone", null: false
@@ -32,4 +57,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_140624) do
   end
 
   add_foreign_key "menu_items", "restaurants"
+  add_foreign_key "order_menu_items", "menu_items"
+  add_foreign_key "order_menu_items", "orders"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "restaurants"
 end
