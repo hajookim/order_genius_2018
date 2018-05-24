@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.menubar {
+	border-right: 1px solid grey;
+	margin-left: 5px; 
+}
+
+.menubar:hover {
+	color: none;
+	text-decoration: none;
+}
