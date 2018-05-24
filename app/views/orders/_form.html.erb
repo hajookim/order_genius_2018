@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <%= form.label :menu_item_id %>
-    <%= form.select 'menu_item_id', collection_check_boxes(:order, :menu_item_ids, MenuItem.all, "id", "name") %>
+    <%= form.select 'menu_item_id', collection_check_boxes(:order, :menu_item_ids, @restaurant.menu_items, "id", "name") %>
  
   </div>
   <div class="actions">
