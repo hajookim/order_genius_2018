@@ -1,4 +1,4 @@
-<%= form_with(model: order, url: new_restaurant_order_path) do |form| %>
+<%= form_with(model: order, url: [@restaurant, order]) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -24,7 +24,11 @@
   </div>
   <div class="field">
     <%= form.label :menu_item_id %>
-    <%= form.select 'menu_item_id', collection_check_boxes(:order, :menu_item_ids, @restaurant.menu_items, "id", "name") %>
+    <%= collection_check_boxes(:order, :menu_item_ids, @restaurant.menu_items, "id", "name") do |b| %>
+      <%= b.label class:"label-checkbox" do%>
+        <%= b.check_box + b.text%>
+        <%end%>
+    <% end %>
  
   </div>
   <div class="actions">
