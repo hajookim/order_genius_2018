@@ -1,14 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Restaurant:</strong>
-  <%= @order.restaurant.name %>
-</p>
+  <strong><%= @order.restaurant.name %> Order for </strong>
+  <strong><%= @order.customer.name %></strong>
+  
+  <table>
+  	<tbody>
+  		<% @order.menu_items.each do |menu| %>
+  		<tr>	
+  			<td><%= menu.name %></td>
+  			<td><%= number_to_currency(menu.price/100) %></td>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @order.customer.name %>
-  <%= @order.menu_items.ids%>
+  		</tr>
+  		<% end %>
+  		<tr>
+  			<td>total: <% @order.total %></td>
+  		</tr>
+  	</tbody>
+  </table>
+  <br>
+  
 </p>
 
 
