@@ -4,6 +4,6 @@ class Order < ApplicationRecord
   has_many :order_menu_items
   has_many :menu_items, through: :order_menu_items
   def total
-  	MenuItem.sum(:price)
+  	menu_items.sum(&:price)
   end
 end
